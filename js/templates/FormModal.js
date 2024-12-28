@@ -1,4 +1,4 @@
-class Form {
+class FormModal {
 //Cette classe Form gère la création et le rendu d'un formulaire modal pour l'enregistrement de l'utilisateur. Elle vérifie si l'utilisateur existe déjà avant d'afficher le formulaire, et cache le formulaire une fois l'utilisateur enregistré.
 
     constructor() {
