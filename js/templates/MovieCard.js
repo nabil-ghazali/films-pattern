@@ -1,14 +1,16 @@
 class MovieCard {
-    // Constructeur qui initialise avec un objet Movie
     constructor(movie) {
         this._movie = movie
+
+        this.$wrapper = document.createElement('div')
+        this.$wrapper.classList.add('movie-card-wrapper')
     }
 
-    // Méthode qui crée une carte HTML pour le film
-    createMovieCard() {
-        const $wrapper = document.createElement('div')
-        $wrapper.classList.add('movie-card-wrapper')
+    get movie() {
+        return this._movie
+    }
 
+    createMovieCard() {
         const movieCard = `
             <div class="movie-thumbnail center">
                 <img
@@ -24,7 +26,7 @@ class MovieCard {
             </p>
         `
         
-        $wrapper.innerHTML = movieCard
-        return $wrapper
+        this.$wrapper.innerHTML = movieCard
+        return this.$wrapper
     }
 }

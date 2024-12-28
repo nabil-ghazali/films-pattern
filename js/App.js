@@ -17,8 +17,8 @@ class App {
         const FullMovies = Movies.concat(ExternalMovies)
 
 
-        const ModalForm = new Form()
-        ModalForm.render()
+        const Form = new FormModal()
+        Form.render()
 
         const Filter = new FilterForm(FullMovies)
         Filter.render()
