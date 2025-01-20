@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" /> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
 
@@ -16,7 +16,11 @@
 <body>
     <header class="main-header">
         <h1>Filmo Patterns</h1>
-        <p>Des films et des design patterns</p>
+        <p>
+            Des films et des design patterns
+            <br />
+            Nombre d'envies : <span class="wish-count">0</span>
+        </p>
     </header>
     <div class="forms-wrapper">
         <div class="filter-form-wrapper"></div>
@@ -56,9 +60,13 @@
     <script src="/js/templates/FormModal.js"></script>
     <script src="/js/templates/FilterForm.js"></script>
     <script src="/js/templates/SorterForm.js"></script>
-    
+
     <!-- Api -->
     <script src="/js/api/Api.js"></script>
+
+    <!-- Pub/Sub -->
+    <script src="/js/wishlist/Subject.js"></script>
+    <script src="/js/wishlist/Counter.js"></script>
 
     <!-- Entry point -->
     <script src="/js/App.js"></script>
