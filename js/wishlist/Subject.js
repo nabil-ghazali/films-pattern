@@ -1,4 +1,4 @@
-class WishListSubject {
+class WishlistSubject {
     /**
      * Constructeur pour initialiser les propriétés du sujet.
      */
