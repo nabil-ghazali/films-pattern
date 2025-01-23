@@ -41,7 +41,6 @@ body {
     grid-template-columns: repeat(8, 1fr);
 }
 
-
 /* Movie Card */
 .movie-thumbnail {
     position: relative;
@@ -144,7 +143,7 @@ body {
 
 /* Filter Form */
 .filter-form-wrapper {
-    margin-bottom: 36px;
+    margin-bottom: 12px;
 }
 
 
@@ -178,4 +177,24 @@ body {
 .close-btn:hover {
     background-color: #eee;
     color: #333;
+}
+
+
+/* Search Form */
+.search-form-wrapper {
+    display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+}
+
+.search-form-wrapper form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    margin-right: 24px;
 }
