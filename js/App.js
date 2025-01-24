@@ -1,22 +1,58 @@
 class App {
     constructor() {
         this.$moviesWrapper = document.querySelector('.movies-wrapper')
-        this.moviesApi = new MovieApi('/data/old-movie-data.json')
+        this.$modalWrapper = document.querySelector('.modal')
+        
+        this.moviesApi = new MovieApi('/data/new-movie-data.json')
+        this.externalMoviesApi = new MovieApi('/data/external-movie-data.json')
+
+        // Movies
+        this.FullMovies = []
+
+        // WishLib Pub/sub
+        this.WishlistSubject = new WishlistSubject()
+        this.WishListCounter = new WishListCounter()
+
+        this.WishlistSubject.subscribe(this.WishListCounter)
+
+        // UserContext
+        this.UserContext = new UserContext()
+    }
+
+    async fetchMovies() {
+        const moviesData = await this.moviesApi.get()
+        const externalMoviesData = await this.externalMoviesApi.get()
+
+        const Movies = moviesData.map(movie => new MoviesFactory(movie, 'newApi'))
+        const ExternalMovies = externalMoviesData.map(movie => new MoviesFactory(movie, 'externalApi'))
+
+        this.FullMovies = Movies.concat(ExternalMovies)
     }
 
     async main() {
-        const moviesData = await this.moviesApi.getMovies()
+        await this.fetchMovies()
 
-        moviesData
-            .map(movie => new OldMovie(movie))
-            .forEach(movie => {
-                console.log("====")
-                console.log(movie)
-                console.log("====")
+        const Form = new FormModal(this.UserContext)
+        Form.render()
 
-            const Template = new MovieCard(movie)
-            this.$moviesWrapper.appendChild(Template.createMovieCard())        
-        })    
+        const Filter = new FilterForm(this.FullMovies)
+        Filter.render()
+
+        const Sorter = new SorterForm(this.FullMovies)
+        Sorter.render()
+
+        const Search = new SearchForm(this.FullMovies)
+        Search.render()
+
+        this.FullMovies.forEach(movie => {
+                const Template = movieCardWithPlayer(
+                    new MovieCard(movie, this.WishlistSubject)
+                )
+
+                this.$moviesWrapper.appendChild(
+                    Template.createMovieCard()
+                )
+        })
     }
 }
 
